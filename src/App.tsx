@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Suspense } from 'react';
+import './index.css';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import PageNotFound from './templates/PageNotFound/PageNotFound';
+import { renderRoutes } from './routes/routes';
+// import Login from './pages/Login';
+import Loading from './components/Loading/Loading';
+// import HomeTemplate from './templates/HomeTemplate/HomeTemplate';
+// import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        <Route path="/admin" element={<Navigate replace to="/admin/dashboard" />} />
+        {renderRoutes()}
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </Suspense>
   );
 }
 

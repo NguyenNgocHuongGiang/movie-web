@@ -1,0 +1,83 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.card {
+    width: 15rem;
+    height: 27rem;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    color: rgb(240, 240, 240);
+    box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);
+
+    img {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 1;
+        /* Độ mờ mặc định */
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    h2 {
+        position: absolute;
+        inset: auto auto 20px 10px;
+        margin: 0;
+        transition: inset 0.3s ease-out;
+        font-family: 'Roboto Condensed', sans-serif;
+        text-transform: uppercase;
+    }
+
+    button {
+        inset: 20px auto auto  30px;
+        opacity: 0; 
+        transition: opacity 0.3s ease-out;
+        transform: translateY(20px);
+    }
+
+    p {
+        position: absolute;
+        opacity: 0;
+        max-width: 80%;
+        transition: opacity 0.3s ease-out;
+        inset: auto auto 90px 30px;
+    }
+
+    &:hover img {
+        opacity: 0.3;
+    }
+
+    &:hover h2 {
+        inset: auto auto 180px 15px;
+        transition: inset 0.3s ease-out;
+        font-weight: bold;
+        font-size: 25px;
+    }
+
+    &:hover p {
+        opacity: 1;
+        inset: auto auto 80px 15px;
+        transition: opacity 0.3s 0.1s ease-in;
+    }
+
+    &:hover button {
+        opacity: 1; 
+        transition: opacity 0.3s 0.1s ease-in, transform 0.3s ease-out;
+        transform: translateY(0);
+        inset: auto auto 500px 20px !important;
+    }
+}
+
+.material-symbols-outlined {
+    vertical-align: middle;
+}
