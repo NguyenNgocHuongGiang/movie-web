@@ -2,12 +2,18 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Dropdown } from "antd";
 import { useDispatch } from 'react-redux';
 import { UserOutlined } from '@ant-design/icons';
-// import { USER_LOGIN } from '../../../utils/config';
+import { USER_LOGIN } from './../../utils/config';
+import { setLogout } from '../../apis/apiNguoiDung/nguoiDungDetail';
+import { AppDispatch } from '../../store/store';
 
 export default function Header() {
-    // const user = JSON.parse(localStorage.getItem(USER_LOGIN));
-    
-    const dispatch = useDispatch()
+    const userItem = localStorage.getItem(USER_LOGIN)
+    let user
+    if (userItem) {
+        user = JSON.parse(userItem);
+    }
+
+    const dispatch = useDispatch<AppDispatch>()
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -22,7 +28,7 @@ export default function Header() {
             key: '2',
             label: (
                 <p onClick={() => {
-                    // dispatch(dangXuatAction(navigate, location))
+                    dispatch(setLogout(navigate, location))
                 }}>Đăng xuất</p>
             ),
         },
@@ -60,7 +66,7 @@ export default function Header() {
                         </NavLink>
                     </li>
                 </ul>
-                {/* {user ? (
+                {user ? (
                     <div className="items-center flex-shrink-0 hidden lg:flex relative">
                         <Dropdown
                             menu={{
@@ -74,7 +80,7 @@ export default function Header() {
                             <p><UserOutlined className='text-lg bg-gray-200 text-black p-2 rounded-full mr-2' /> {user.taiKhoan}</p>
                         </Dropdown>
                     </div>
-                ) : ( */}
+                ) : (
                     <div className="items-center flex-shrink-0 hidden lg:flex">
                         <button className="self-center px-2 py-1 rounded">
                             <NavLink
@@ -97,12 +103,7 @@ export default function Header() {
                             </NavLink>
                         </button>
                     </div>
-                {/* )} */}
-                <button className="p-4 lg:hidden">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-800">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
+                )}
             </div>
         </header>
     );

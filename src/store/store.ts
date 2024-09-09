@@ -3,11 +3,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import carouselReducer from "./reducers/carouselDetail";
 import phimReducer from "./reducers/phimDetail"
 import rapReducer from "./reducers/rapDetail"
+import nguoiDungReducer from "./reducers/nguoiDungDetail"
+import datVeReducer from "./reducers/datVeDetail"
 
 const rootReducer = combineReducers({
     carouselReducer,
     phimReducer,
     rapReducer,
+    nguoiDungReducer,
+    datVeReducer
 });
 
 export const store = configureStore({
