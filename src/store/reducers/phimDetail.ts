@@ -6,13 +6,29 @@ export interface PhimList {
     phimListDefault: PhimType[];
     dangChieu: boolean,
     sapChieu: boolean
+    phimDetail: PhimType
 }
 
 const initialState: PhimList = {
     phimList: [],
     phimListDefault: [],
     dangChieu: false,
-    sapChieu: false
+    sapChieu: false,
+    phimDetail: {
+        heThongRapChieu: [],
+      maPhim: 0,
+      tenPhim: '',
+      biDanh: '',
+      trailer: '',
+      hinhAnh: '',
+      moTa: '',
+      maNhom: '',
+      hot: false,
+      dangChieu: false,
+      sapChieu: false,
+      ngayKhoiChieu: '',
+      danhGia: 0
+    }
 };
 
 const phimReducer = createSlice({
@@ -33,6 +49,9 @@ const phimReducer = createSlice({
             state.sapChieu = true;
             state.phimList = state.phimListDefault.filter((item:PhimType) => item.sapChieu === true)
         },
+        getThongTinChiTietPhimAction: (state, action) => {
+            state.phimDetail = action.payload
+        },
     },
 });
 
@@ -40,7 +59,8 @@ const phimReducer = createSlice({
 export const {
     getListPhimAction,
     getListPhimDangChieuAction,
-    getListPhimSapChieuAction
+    getListPhimSapChieuAction,
+    getThongTinChiTietPhimAction
 } = phimReducer.actions;
 
 export default phimReducer.reducer;

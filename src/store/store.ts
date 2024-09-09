@@ -2,10 +2,12 @@ import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import carouselReducer from "./reducers/carouselDetail";
 import phimReducer from "./reducers/phimDetail"
+import rapReducer from "./reducers/rapDetail"
 
 const rootReducer = combineReducers({
     carouselReducer,
-    phimReducer
+    phimReducer,
+    rapReducer,
 });
 
 export const store = configureStore({

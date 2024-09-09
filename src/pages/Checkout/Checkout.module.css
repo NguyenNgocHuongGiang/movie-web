@@ -1,0 +1,30 @@
+.screen {
+    border-bottom: 25px solid #b4b4b4c9;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    height: 0;
+}
+
+.ghe {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    background-color: rgb(47, 47, 47);
+    color: white;
+    border: solid 1px white;
+}
+
+.gheDaDat{
+    background-color: rgb(254, 101, 101);
+    cursor: no-drop;
+}
+
+.gheDangDat{
+    background-color: rgb(41, 149, 41) !important;
+}
+
+.gheVip{
+    background-color: yellow;
+}

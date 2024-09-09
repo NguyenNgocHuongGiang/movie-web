@@ -1,0 +1,6 @@
+.ant-tabs-ink-bar {
+    background-color: rgb(215, 215, 4) !important;
+    height: 66px;
+    top: 115px;
+    transform: translateY(-50%);
+}

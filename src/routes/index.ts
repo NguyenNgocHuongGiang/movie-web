@@ -14,7 +14,7 @@ const routes: RouteConfig[] = [
       { path: "", element: lazy(() => import("./../pages/Home/Home"))},
       { path: "/news", element: lazy(() => import("./../pages/News/News"))},
       { path: "/contact", element: lazy(() => import("./../pages/Contact/Contact"))},
-      { path: "/detail/:id", element: lazy(() => import("./../pages/Contact/Contact"))},
+      { path: "/detail/:id", element: lazy(() => import("./../pages/Detail/Detail"))},
     ]
   },
 
@@ -43,6 +43,10 @@ const routes: RouteConfig[] = [
     nested: [
         { path: "", element: lazy(() => import("./../pages/Register/Register")) },
     ]
+  },
+  {
+    path: "/checkout/:id",
+    element: lazy(() => import("./../templates/CheckoutTemplate/CheckoutTemplate")),
   },
 
 ];

@@ -3,11 +3,7 @@ import Header from './../../components/Header/Header';
 import { Outlet } from 'react-router-dom';
 import Footer from './../../components/Footer/Footer';
 
-interface HomeTemplateProps {
-    Component: React.ComponentType; 
-}
-
-const HomeTemplate: React.FC<HomeTemplateProps> = ({ Component }) => {
+const HomeTemplate = () => {
     useEffect(() => {
         window.scrollTo(0, 0)
     })

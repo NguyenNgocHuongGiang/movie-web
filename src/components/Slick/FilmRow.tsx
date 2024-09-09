@@ -3,7 +3,7 @@ import styleSlick from "./FilmRow.module.css"
 import Phim from "./../Phim/Phim";
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from "react-slick";
-import phimReducer, { getListPhimDangChieuAction, getListPhimSapChieuAction } from '../../store/reducers/phimDetail';
+import { getListPhimDangChieuAction, getListPhimSapChieuAction } from '../../store/reducers/phimDetail';
 import { RootState, AppDispatch } from '../../store/store';
 import { getPhimList } from '../../apis/apiPhim/phimDetail';
 import { PhimType } from '../../types/phimType';
