@@ -15,6 +15,7 @@ const routes: RouteConfig[] = [
       { path: "/news", element: lazy(() => import("./../pages/News/News"))},
       { path: "/contact", element: lazy(() => import("./../pages/Contact/Contact"))},
       { path: "/detail/:id", element: lazy(() => import("./../pages/Detail/Detail"))},
+      { path: "/history", element: lazy(() => import("./../pages/History/History"))},
     ]
   },
 

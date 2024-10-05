@@ -20,6 +20,11 @@ const Contact = () => {
   const handleSubmit = (e : any) => {
     e.preventDefault();
     setShowModal(true); 
+    setFormData({
+      name: '',
+      email: '',
+      message: ''
+    });
   };
 
   useEffect(() => {

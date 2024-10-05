@@ -3,7 +3,7 @@ import { LichChieuPhim, Ghe } from "../../types/datVeType";
 
 export interface PhongVelList {
     chiTietPhongVe: LichChieuPhim;
-    danhSachGheDangDat: Ghe[]
+    danhSachGheDangDat: any[]
 }
 
 const initialState: PhongVelList = {
@@ -21,13 +21,13 @@ const initialState: PhongVelList = {
         danhSachGhe: [
             {
                 "maGhe": 0,
-                "tenGhe": "string",
+                "tenGhe": "",
                 "maRap": 0,
-                "loaiGhe": "string",
-                "stt": "string",
+                "loaiGhe": "",
+                "stt": "",
                 "giaVe": 0,
                 "daDat": false,
-                "taiKhoanNguoiDat": "string"
+                "taiKhoanNguoiDat": ""
             }
         ]
     },
@@ -52,13 +52,17 @@ const datVeReducer = createSlice({
             }
             return {...state, danhSachGheDangDat : danhSachGheCapNhat}
         },
+        clearGheDaDatTruocAction : (state) => {
+            state.danhSachGheDangDat = [];
+        },
     },
 });
 
 
 export const {
     getChiTietPhongVeAction,
-    getDanhSachGheChonAction
+    getDanhSachGheChonAction,
+    clearGheDaDatTruocAction
 } = datVeReducer.actions;
 
 export default datVeReducer.reducer;

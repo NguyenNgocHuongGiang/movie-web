@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import './Checkout.css'
 import { CloseOutlined, UserOutlined } from '@ant-design/icons';
 import _ from 'lodash';
-import { Divider } from 'antd';
+import { Divider, notification } from 'antd';
 import Loading from '../../components/Loading/Loading';
 import { useState } from 'react';
 import { AppDispatch, RootState } from '../../store/store';
-import { getDanhSachPhongVe, setDatVe } from '../../apis/apiDatVe/datVeDetail';
+import { clearGhe, getDanhSachPhongVe, setDatVe } from '../../apis/apiDatVe/datVeDetail';
 import { Ghe, ThongTinDatVe } from '../../types/datVeType';
 import { getDanhSachGheChonAction } from '../../store/reducers/datVeDetail';
 
@@ -28,16 +28,20 @@ export default function Checkout() {
   const [loading, setLoading] = useState(true);
 
   let { chiTietPhongVe, danhSachGheDangDat } = useSelector((state:RootState) => state.datVeReducer)
-
-  console.log(chiTietPhongVe);
   
   useEffect(() => {
     setLoading(true);
     if(id){
       dispatch(getDanhSachPhongVe(id))
+      .then(() => {
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
     }
     setLoading(false);
-  }, [])
+  }, [id])
 
   if (loading) {
     return (
@@ -148,14 +152,28 @@ export default function Checkout() {
             </div>
           </div>
           <div className='mt-7'><button className='bg-gray-800 w-full py-3 text-lg rounded-xl text-white hover:bg-gray-100 hover:text-yellow-500 hover:text-xl hover:font-medium' onClick={() => {
+            if (danhSachGheDangDat.length === 0) {
+              notification.warning({
+                message: 'Warning',
+                description: 'Vui lòng chọn ghế trước khi đặt vé.',
+                placement: 'topRight', 
+                duration: 3,
+              });
+              return;
+            }
+      
             const thongTinDatVe:ThongTinDatVe = {
               maLichChieu: 0,
               danhSachVe: []
             }
             thongTinDatVe.maLichChieu = Number(id)
-            thongTinDatVe.danhSachVe = danhSachGheDangDat
+            thongTinDatVe.danhSachVe = danhSachGheDangDat.map(ghe => ({
+              maGhe: ghe.maGhe,
+              giaVe: ghe.giaVe
+            }));
             dispatch(setDatVe(thongTinDatVe))
-            // navigate("/history")
+            dispatch(clearGhe())
+            navigate("/history")
           }}>Đặt vé</button></div>
         </div>
       </div>

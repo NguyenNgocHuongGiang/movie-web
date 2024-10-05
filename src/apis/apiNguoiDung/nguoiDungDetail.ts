@@ -1,5 +1,5 @@
-import { setLoginAction, setRegisterAction } from "../../store/reducers/nguoiDungDetail";
-import { infoLogin } from "../../types/nguoiDungType";
+import { getUserInfoAndHistoryAction, setLoginAction, setRegisterAction, updateUserInfoAndHistoryAction } from "../../store/reducers/nguoiDungDetail";
+import { infoLogin, updateUser } from "../../types/nguoiDungType";
 import api from "../../utils/apiUtils";
 import { Dispatch } from 'redux';
 import { TOKEN, USER_LOGIN } from "../../utils/config";
@@ -44,3 +44,24 @@ export const setLogout = (navigate:any, location:any) => {
     };
 };
 
+export const getInfoUserAndHistory = () => {
+    return async (dispatch: Dispatch) => {        
+        try {
+            const res = await api.post(`QuanLyNguoiDung/ThongTinTaiKhoan`);           
+            dispatch(getUserInfoAndHistoryAction(res.data.content));
+        } catch (err) {
+            console.error('Failed to fetch carousel details', err);
+        }
+    };
+};
+
+export const updateUserInfor = (info : updateUser) => {
+    return async (dispatch: Dispatch) => {        
+        try {
+            const res = await api.put(`QuanLyNguoiDung/CapNhatThongTinNguoiDung`, info)
+            dispatch(updateUserInfoAndHistoryAction(res.data.content));
+        } catch (err) {
+            console.error('Failed to fetch carousel details', err);
+        }
+    };
+};

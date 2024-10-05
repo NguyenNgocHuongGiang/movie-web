@@ -10,7 +10,10 @@ const api = axios.create({
 
 api.interceptors.request.use((config: Config) => {
     
-    const token = localStorage.getItem('authToken');
+    let token = localStorage.getItem('accessToken');
+    if(token){
+        token = token.replace(/"/g, '');
+    }
 
     config.headers = {
         ...config.headers,
