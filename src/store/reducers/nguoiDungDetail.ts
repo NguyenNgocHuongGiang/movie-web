@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { infoLoginResponse, infoRegister, updateUser } from "../../types/nguoiDungType";
+import { infoLoginResponse, infoRegister, updateUser, userList } from "../../types/nguoiDungType";
 import { TOKEN, USER_LOGIN } from "../../utils/config";
 
 export interface nguoiDungList {
@@ -7,6 +7,7 @@ export interface nguoiDungList {
     userSignUp: infoRegister,
     userInfoAndHistory : any,
     userUpdate: updateUser
+    userList: userList[]
 }
 
 const initialState: nguoiDungList = {
@@ -36,7 +37,8 @@ const initialState: nguoiDungList = {
         "maNhom": "",
         "maLoaiNguoiDung": "",
         "hoTen": ""
-    }
+    },
+    userList: []
 };
 
 const nguoiDungReducer = createSlice({
@@ -58,6 +60,9 @@ const nguoiDungReducer = createSlice({
         updateUserInfoAndHistoryAction: (state, action) => {
             state.userUpdate = action.payload
         },
+        getUserListAction: (state, action) => {
+            state.userList = action.payload
+        }
     },
 });
 
@@ -66,7 +71,8 @@ export const {
     setLoginAction,
     setRegisterAction,
     getUserInfoAndHistoryAction,
-    updateUserInfoAndHistoryAction
+    updateUserInfoAndHistoryAction,
+    getUserListAction
 } = nguoiDungReducer.actions;
 
 export default nguoiDungReducer.reducer;

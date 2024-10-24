@@ -32,12 +32,11 @@ export interface updateUser{
     hoTen: string
   }
 
-export interface updateUser{
-    taiKhoan: string,
-    matKhau: string,
-    email: string,
-    soDT: string,
-    maNhom: string,
-    hoTen: string,
-    maLoaiNguoiDung: string
+export interface userList {
+  taiKhoan:        string;
+  hoTen:           string;
+  email:           string;
+  soDt:            string;
+  matKhau:         string;
+  maLoaiNguoiDung: string;
 }

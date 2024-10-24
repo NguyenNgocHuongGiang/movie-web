@@ -14,3 +14,17 @@ export const getPhimList = () => {
     };
 };
 
+
+export const addPhim = (formdata: any) => {
+    return async () => {
+      const res = await api.post(`QuanLyPhim/ThemPhimUploadHinh`, formdata)
+      return res.data.content;
+    };
+  };
+  
+  export const deletePhim = (maPhim: any) => {
+    return async () => {
+      const res = await api.delete(`QuanLyPhim/XoaPhim?MaPhim=${maPhim}`);
+      return res.data.content;
+    };
+  };

@@ -7,7 +7,6 @@ import { QRCodeSVG } from 'qrcode.react';
 import { Modal, Button, Divider } from 'antd';
 import { CheckCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
-import Loading from '../../components/Loading/Loading';
 import { AppDispatch, RootState } from '../../store/store';
 import { getInfoUserAndHistory, updateUserInfor } from '../../apis/apiNguoiDung/nguoiDungDetail';
 import { Acc, Ghe, SelectedGroup, Ve } from '../../types/thongTinVeDaDat';
@@ -15,7 +14,6 @@ import { Acc, Ghe, SelectedGroup, Ve } from '../../types/thongTinVeDaDat';
 export default function History() {
     const navigate = useNavigate()
 
-    const [loading, setLoading] = useState(true);
 
     const dispatch = useDispatch<AppDispatch>();
     const { userInfoAndHistory } = useSelector((state:RootState) => state.nguoiDungReducer);
@@ -30,9 +28,7 @@ export default function History() {
     }
 
     useEffect(() => {
-        setLoading(true);
         dispatch(getInfoUserAndHistory());
-        setLoading(false);
     },[dispatch]);    
 
     // if(loading){
